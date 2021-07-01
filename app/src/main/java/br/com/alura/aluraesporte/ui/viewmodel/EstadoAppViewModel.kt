@@ -6,20 +6,22 @@ import androidx.lifecycle.ViewModel
 
 class EstadoAppViewModel : ViewModel() {
 
-    val appBar: LiveData<Boolean> get() = _appBar
+    val componentes: LiveData<ComponentesVisuais> get() = _componentes
 
-    private var _appBar: MutableLiveData<Boolean> = MutableLiveData<Boolean>().also {
-        it.value = temAppBar
-    }
-
-    var temAppBar: Boolean = false
-        set(value) {
-            field = value
-            _appBar.value = value
+    private var _componentes: MutableLiveData<ComponentesVisuais> =
+        MutableLiveData<ComponentesVisuais>().also {
+            it.value = temComponentes
         }
 
-    fun confiraAppbar(valor: Boolean) {
-        _appBar.value = valor
-    }
+    var temComponentes: ComponentesVisuais = ComponentesVisuais()
+        set(value) {
+            field = value
+            _componentes.value = value
+        }
 
 }
+
+class ComponentesVisuais(
+    val appBar: Boolean = false,
+    val bottomNavigation: Boolean = false
+)
